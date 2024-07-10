@@ -10,6 +10,7 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
     )
     @Published var distance: Double = 0.0
     @Published var routeCoordinates: [CLLocationCoordinate2D] = []
+    @Published var speeds: [CLLocationSpeed] = []
     private var lastLocation: CLLocation?
 
     override init() {
@@ -61,6 +62,7 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             )
             self.routeCoordinates.append(newLocation.coordinate)
+            self.speeds.append(newLocation.speed)
         }
     }
 
@@ -72,5 +74,6 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         self.routeCoordinates = []
         self.distance = 0.0
         self.lastLocation = nil
+        self.speeds = []
     }
 }

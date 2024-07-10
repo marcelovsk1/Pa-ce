@@ -197,7 +197,7 @@ struct MainView: View {
                                             .foregroundColor(.purple)
                                     }
                                     .offset(y: 15)
-                                    .offset(x: -35)
+                                    .offset(x: -38)
                                 }
                             }
 

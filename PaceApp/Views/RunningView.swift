@@ -22,7 +22,7 @@ struct RunningView: View {
     var body: some View {
         ZStack {
             // Background Map
-            RouteTrackingMapView(region: $locationService.region, routeCoordinates: $locationService.routeCoordinates)
+            RouteTrackingMapView(region: $locationService.region, routeCoordinates: $locationService.routeCoordinates, speeds: $locationService.speeds)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(
                     RadialGradient(gradient: Gradient(colors: [.white.opacity(1.0), .clear]), center: .top, startRadius: 200, endRadius: 500)
@@ -326,48 +326,6 @@ struct RunningView: View {
             } else if let webUrl = URL(string: "https://open.spotify.com") {
                 UIApplication.shared.open(webUrl)
             }
-        }
-    }
-}
-
-struct RouteTrackingMapView: UIViewRepresentable {
-    @Binding var region: MKCoordinateRegion
-    @Binding var routeCoordinates: [CLLocationCoordinate2D]
-
-    func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
-        mapView.delegate = context.coordinator
-        mapView.setRegion(region, animated: true)
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
-        return mapView
-    }
-
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        uiView.setRegion(region, animated: true)
-        let polyline = MKPolyline(coordinates: routeCoordinates, count: routeCoordinates.count)
-        uiView.addOverlay(polyline)
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, MKMapViewDelegate {
-        var parent: RouteTrackingMapView
-
-        init(_ parent: RouteTrackingMapView) {
-            self.parent = parent
-        }
-
-        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            if let polyline = overlay as? MKPolyline {
-                let renderer = MKPolylineRenderer(polyline: polyline)
-                renderer.strokeColor = .purple
-                renderer.lineWidth = 9.0
-                return renderer
-            }
-            return MKOverlayRenderer()
         }
     }
 }
