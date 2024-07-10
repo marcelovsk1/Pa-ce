@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BCA3F262C3E315B009E30D0 /* PaceAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F252C3E315B009E30D0 /* PaceAppApp.swift */; };
+		0BCA3F282C3E315B009E30D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F272C3E315B009E30D0 /* ContentView.swift */; };
+		0BCA3F2A2C3E315D009E30D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BCA3F292C3E315D009E30D0 /* Assets.xcassets */; };
+		0BCA3F2D2C3E315D009E30D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BCA3F2C2C3E315D009E30D0 /* Preview Assets.xcassets */; };
+		0BCA3F352C3E31E8009E30D0 /* BestParksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F342C3E31E8009E30D0 /* BestParksView.swift */; };
+		0BCA3F372C3E3205009E30D0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F362C3E3205009E30D0 /* MainView.swift */; };
+		0BCA3F392C3E3220009E30D0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F382C3E321F009E30D0 /* MapView.swift */; };
+		0BCA3F3B2C3E328D009E30D0 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F3A2C3E328D009E30D0 /* PauseView.swift */; };
+		0BCA3F3D2C3E32A0009E30D0 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F3C2C3E32A0009E30D0 /* RunningView.swift */; };
+		0BCA3F3F2C3E32BD009E30D0 /* ShoeRecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F3E2C3E32BD009E30D0 /* ShoeRecommendationView.swift */; };
+		0BCA3F412C3E32D4009E30D0 /* UserTrackingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F402C3E32D4009E30D0 /* UserTrackingMapView.swift */; };
+		0BCA3F432C3E32F2009E30D0 /* WorkoutCompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F422C3E32F2009E30D0 /* WorkoutCompletedView.swift */; };
+		0BCA3F462C3E3320009E30D0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F452C3E3320009E30D0 /* ViewModel.swift */; };
+		0BCA3F482C3E3332009E30D0 /* Parks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F472C3E3332009E30D0 /* Parks.swift */; };
+		0BCA3F4A2C3E3343009E30D0 /* Marathon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F492C3E3343009E30D0 /* Marathon.swift */; };
+		0BCA3F4C2C3E335A009E30D0 /* IdentifiablePark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F4B2C3E335A009E30D0 /* IdentifiablePark.swift */; };
+		0BCA3F4F2C3E338B009E30D0 /* ChartTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F4E2C3E338B009E30D0 /* ChartTypes.swift */; };
+		0BCA3F512C3E339F009E30D0 /* CoreMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F502C3E339F009E30D0 /* CoreMotion.swift */; };
+		0BCA3F532C3E33B7009E30D0 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F522C3E33B7009E30D0 /* HealthKit.swift */; };
+		0BCA3F552C3E33CC009E30D0 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F542C3E33CC009E30D0 /* LocationService.swift */; };
+		0BCA3F572C3E39ED009E30D0 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F562C3E39ED009E30D0 /* MotionService.swift */; };
+		0BCA3F592C3E3A03009E30D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F582C3E3A03009E30D0 /* SceneDelegate.swift */; };
+		0BCA3F5B2C3E3A27009E30D0 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F5A2C3E3A27009E30D0 /* WeatherService.swift */; };
+		0BCA3F602C3E3A6D009E30D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F5F2C3E3A6D009E30D0 /* Model.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0BCA3F222C3E315B009E30D0 /* PaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BCA3F252C3E315B009E30D0 /* PaceAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaceAppApp.swift; sourceTree = "<group>"; };
+		0BCA3F272C3E315B009E30D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0BCA3F292C3E315D009E30D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0BCA3F2C2C3E315D009E30D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0BCA3F342C3E31E8009E30D0 /* BestParksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestParksView.swift; sourceTree = "<group>"; };
+		0BCA3F362C3E3205009E30D0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		0BCA3F382C3E321F009E30D0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		0BCA3F3A2C3E328D009E30D0 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
+		0BCA3F3C2C3E32A0009E30D0 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
+		0BCA3F3E2C3E32BD009E30D0 /* ShoeRecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoeRecommendationView.swift; sourceTree = "<group>"; };
+		0BCA3F402C3E32D4009E30D0 /* UserTrackingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrackingMapView.swift; sourceTree = "<group>"; };
+		0BCA3F422C3E32F2009E30D0 /* WorkoutCompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCompletedView.swift; sourceTree = "<group>"; };
+		0BCA3F452C3E3320009E30D0 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0BCA3F472C3E3332009E30D0 /* Parks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parks.swift; sourceTree = "<group>"; };
+		0BCA3F492C3E3343009E30D0 /* Marathon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marathon.swift; sourceTree = "<group>"; };
+		0BCA3F4B2C3E335A009E30D0 /* IdentifiablePark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiablePark.swift; sourceTree = "<group>"; };
+		0BCA3F4E2C3E338B009E30D0 /* ChartTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTypes.swift; sourceTree = "<group>"; };
+		0BCA3F502C3E339F009E30D0 /* CoreMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotion.swift; sourceTree = "<group>"; };
+		0BCA3F522C3E33B7009E30D0 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
+		0BCA3F542C3E33CC009E30D0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		0BCA3F562C3E39ED009E30D0 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
+		0BCA3F582C3E3A03009E30D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0BCA3F5A2C3E3A27009E30D0 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		0BCA3F5F2C3E3A6D009E30D0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0BCA3F1F2C3E315B009E30D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0BCA3F192C3E315B009E30D0 = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F242C3E315B009E30D0 /* PaceApp */,
+				0BCA3F232C3E315B009E30D0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0BCA3F232C3E315B009E30D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F222C3E315B009E30D0 /* PaceApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0BCA3F242C3E315B009E30D0 /* PaceApp */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F5E2C3E3A61009E30D0 /* Models */,
+				0BCA3F4D2C3E336D009E30D0 /* Services */,
+				0BCA3F442C3E3303009E30D0 /* ViewModels */,
+				0BCA3F332C3E31C6009E30D0 /* Views */,
+				0BCA3F252C3E315B009E30D0 /* PaceAppApp.swift */,
+				0BCA3F272C3E315B009E30D0 /* ContentView.swift */,
+				0BCA3F292C3E315D009E30D0 /* Assets.xcassets */,
+				0BCA3F2B2C3E315D009E30D0 /* Preview Content */,
+			);
+			path = PaceApp;
+			sourceTree = "<group>";
+		};
+		0BCA3F2B2C3E315D009E30D0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F2C2C3E315D009E30D0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0BCA3F332C3E31C6009E30D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F342C3E31E8009E30D0 /* BestParksView.swift */,
+				0BCA3F362C3E3205009E30D0 /* MainView.swift */,
+				0BCA3F382C3E321F009E30D0 /* MapView.swift */,
+				0BCA3F3A2C3E328D009E30D0 /* PauseView.swift */,
+				0BCA3F3C2C3E32A0009E30D0 /* RunningView.swift */,
+				0BCA3F3E2C3E32BD009E30D0 /* ShoeRecommendationView.swift */,
+				0BCA3F402C3E32D4009E30D0 /* UserTrackingMapView.swift */,
+				0BCA3F422C3E32F2009E30D0 /* WorkoutCompletedView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0BCA3F442C3E3303009E30D0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F452C3E3320009E30D0 /* ViewModel.swift */,
+				0BCA3F472C3E3332009E30D0 /* Parks.swift */,
+				0BCA3F492C3E3343009E30D0 /* Marathon.swift */,
+				0BCA3F4B2C3E335A009E30D0 /* IdentifiablePark.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0BCA3F4D2C3E336D009E30D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F4E2C3E338B009E30D0 /* ChartTypes.swift */,
+				0BCA3F502C3E339F009E30D0 /* CoreMotion.swift */,
+				0BCA3F522C3E33B7009E30D0 /* HealthKit.swift */,
+				0BCA3F542C3E33CC009E30D0 /* LocationService.swift */,
+				0BCA3F562C3E39ED009E30D0 /* MotionService.swift */,
+				0BCA3F582C3E3A03009E30D0 /* SceneDelegate.swift */,
+				0BCA3F5A2C3E3A27009E30D0 /* WeatherService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0BCA3F5E2C3E3A61009E30D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3F5F2C3E3A6D009E30D0 /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0BCA3F212C3E315B009E30D0 /* PaceApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BCA3F302C3E315D009E30D0 /* Build configuration list for PBXNativeTarget "PaceApp" */;
+			buildPhases = (
+				0BCA3F1E2C3E315B009E30D0 /* Sources */,
+				0BCA3F1F2C3E315B009E30D0 /* Frameworks */,
+				0BCA3F202C3E315B009E30D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaceApp;
+			productName = PaceApp;
+			productReference = 0BCA3F222C3E315B009E30D0 /* PaceApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0BCA3F1A2C3E315B009E30D0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					0BCA3F212C3E315B009E30D0 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 0BCA3F1D2C3E315B009E30D0 /* Build configuration list for PBXProject "PaceApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0BCA3F192C3E315B009E30D0;
+			productRefGroup = 0BCA3F232C3E315B009E30D0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0BCA3F212C3E315B009E30D0 /* PaceApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0BCA3F202C3E315B009E30D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BCA3F2D2C3E315D009E30D0 /* Preview Assets.xcassets in Resources */,
+				0BCA3F2A2C3E315D009E30D0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0BCA3F1E2C3E315B009E30D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BCA3F352C3E31E8009E30D0 /* BestParksView.swift in Sources */,
+				0BCA3F372C3E3205009E30D0 /* MainView.swift in Sources */,
+				0BCA3F412C3E32D4009E30D0 /* UserTrackingMapView.swift in Sources */,
+				0BCA3F462C3E3320009E30D0 /* ViewModel.swift in Sources */,
+				0BCA3F392C3E3220009E30D0 /* MapView.swift in Sources */,
+				0BCA3F4C2C3E335A009E30D0 /* IdentifiablePark.swift in Sources */,
+				0BCA3F3B2C3E328D009E30D0 /* PauseView.swift in Sources */,
+				0BCA3F282C3E315B009E30D0 /* ContentView.swift in Sources */,
+				0BCA3F432C3E32F2009E30D0 /* WorkoutCompletedView.swift in Sources */,
+				0BCA3F572C3E39ED009E30D0 /* MotionService.swift in Sources */,
+				0BCA3F3D2C3E32A0009E30D0 /* RunningView.swift in Sources */,
+				0BCA3F512C3E339F009E30D0 /* CoreMotion.swift in Sources */,
+				0BCA3F4A2C3E3343009E30D0 /* Marathon.swift in Sources */,
+				0BCA3F5B2C3E3A27009E30D0 /* WeatherService.swift in Sources */,
+				0BCA3F4F2C3E338B009E30D0 /* ChartTypes.swift in Sources */,
+				0BCA3F3F2C3E32BD009E30D0 /* ShoeRecommendationView.swift in Sources */,
+				0BCA3F592C3E3A03009E30D0 /* SceneDelegate.swift in Sources */,
+				0BCA3F262C3E315B009E30D0 /* PaceAppApp.swift in Sources */,
+				0BCA3F482C3E3332009E30D0 /* Parks.swift in Sources */,
+				0BCA3F602C3E3A6D009E30D0 /* Model.swift in Sources */,
+				0BCA3F552C3E33CC009E30D0 /* LocationService.swift in Sources */,
+				0BCA3F532C3E33B7009E30D0 /* HealthKit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0BCA3F2E2C3E315D009E30D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0BCA3F2F2C3E315D009E30D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0BCA3F312C3E315D009E30D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PaceApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 972SSN6428;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marceloamaral.PaceApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0BCA3F322C3E315D009E30D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PaceApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 972SSN6428;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marceloamaral.PaceApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0BCA3F1D2C3E315B009E30D0 /* Build configuration list for PBXProject "PaceApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BCA3F2E2C3E315D009E30D0 /* Debug */,
+				0BCA3F2F2C3E315D009E30D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BCA3F302C3E315D009E30D0 /* Build configuration list for PBXNativeTarget "PaceApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BCA3F312C3E315D009E30D0 /* Debug */,
+				0BCA3F322C3E315D009E30D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0BCA3F1A2C3E315B009E30D0 /* Project object */;
+}
