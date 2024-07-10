@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>UIAppFonts</key>
+    <array>
+        <string>Coolvetica-Regular.ttf</string>
+    </array>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>location</string>
+    </array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to provide weather information.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need your location to provide weather information even in the background.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location to provide weather information even in the background.</string>
+</dict>
+</plist>

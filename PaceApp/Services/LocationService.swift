@@ -17,24 +17,21 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.distanceFilter = 10 // Atualizações a cada 10 metros
+        locationManager.allowsBackgroundLocationUpdates = true // Permitir atualizações em segundo plano
         locationManager.pausesLocationUpdatesAutomatically = false // Não pausar atualizações automaticamente
         checkLocationAuthorization()
     }
 
     func checkLocationAuthorization() {
         switch locationManager.authorizationStatus {
-        case .authorizedWhenInUse:
-            locationManager.allowsBackgroundLocationUpdates = false
-            startUpdatingLocation()
-        case .authorizedAlways:
-            locationManager.allowsBackgroundLocationUpdates = true
+        case .authorizedWhenInUse, .authorizedAlways:
             startUpdatingLocation()
         case .denied, .restricted:
             print("Location access denied.")
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization() // Alterado para solicitar apenas autorização ao usar o app
+            locationManager.requestAlwaysAuthorization()
         @unknown default:
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
     }
 
@@ -69,10 +66,6 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed to get user location: \(error.localizedDescription)")
     }
 
     func resetData() {
