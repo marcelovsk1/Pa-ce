@@ -212,12 +212,13 @@ struct RunningView: View {
                     HStack {
                         Image(systemName: "stop")
                             .font(.title2)
+                            .bold()
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .bold()
                     .padding()
                     .foregroundColor(.white)
-                    .frame(width: 120, height: 120)
+                    .frame(width: 130, height: 130)
                     .background(Color(red: 0.1, green: 0.1, blue: 0.1))
                     .clipShape(Circle())
                     .padding()

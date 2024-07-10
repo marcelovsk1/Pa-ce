@@ -32,9 +32,9 @@ class LocationService: NSObject, CLLocationManagerDelegate, ObservableObject {
         case .denied, .restricted:
             print("Location access denied.")
         case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization() // Alterado para solicitar apenas autorização ao usar o app
         @unknown default:
-            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         }
     }
 
