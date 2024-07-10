@@ -156,7 +156,6 @@ struct MainView: View {
                             }
 
                             Button(action: {
-                                viewModel.resetRunData() // Reset run data
                                 isRunning = true
                                 locationService.startUpdatingLocation()
                             }) {

@@ -186,7 +186,6 @@ struct PausedView: View {
                             .gridCellColumns(1)
                         }
                     }
-//                    .padding()
                     .background(Color.white.opacity(0.1))
                     .cornerRadius(10)
 
@@ -243,9 +242,12 @@ struct PausedView: View {
                                     // Feedback tátil ao iniciar o gesto de pressionar longamente
                                     let generator = UIImpactFeedbackGenerator(style: .heavy)
                                     generator.impactOccurred()
+                                    // Reset data
+                                    locationService.resetData()
                                 }
 
                             Button(action: {
+                                locationService.startUpdatingLocation()
                                 onResume()
                             }) {
                                 Image(systemName: "play")
