@@ -60,8 +60,11 @@ struct RunningView: View {
                                 HStack {
                                     Image(systemName: "plus")
                                         .foregroundColor(.black)
+                                        .font(.custom("Avenir Next", size: 18))
                                     Image(systemName: "music.note")
                                         .foregroundColor(.green)
+                                        .font(.custom("Avenir Next", size: 18))
+                                        
                                 }
                                 .padding()
                                 .background(Color.white.opacity(0.1))
@@ -360,8 +363,8 @@ struct RouteTrackingMapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if let polyline = overlay as? MKPolyline {
                 let renderer = MKPolylineRenderer(polyline: polyline)
-                renderer.strokeColor = .blue
-                renderer.lineWidth = 4.0
+                renderer.strokeColor = .purple
+                renderer.lineWidth = 9.0
                 return renderer
             }
             return MKOverlayRenderer()

@@ -69,7 +69,8 @@ struct MainView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 0) {
+                // Adiciona a logo na barra de navegação personalizada
                 HStack {
                     Button(action: {
                         // Ação do botão
@@ -99,38 +100,51 @@ struct MainView: View {
                 }
                 .background(Color.white)
                 .shadow(radius: 1)
+
+                // Linha divisória sutil
+                Divider()
+                    .background(Color.gray.opacity(0.3))
                 
                 TabView(selection: $selectedTab) {
                     NavigationView {
-                        MapView(region: $locationService.region)
+                        VStack {
+                            Text("Activities")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .padding()
+                            Spacer()
+                        }
+                        .navigationTitle("Activities")
                     }
                     .tabItem {
-                        Image(systemName: "map")
-                        Text("Map")
+                        Image(systemName: "list.bullet")
+                        Text("Activities")
                     }
                     .tag(0)
-
+                    
                     ZStack {
+                        // Map com efeito de Vignette
                         UserTrackingMapView(region: $locationService.region)
-                            .frame(maxWidth: .infinity, maxHeight: 550)
+                            .frame(maxWidth: .infinity, maxHeight: 550) // Ajuste a altura do mapa
                             .offset(y: mapOffset)
                             .offset(y: 20)
                             .overlay(
                                 RadialGradient(gradient: Gradient(colors: [.clear, .white.opacity(2.9)]), center: .center, startRadius: 50, endRadius: 550)
-                                    .offset(y: 50)
-                                    .frame(maxWidth: .infinity, maxHeight: 550)
+                                    .offset(y: 50) // Ajuste a posição do gradiente para baixo
+                                    .frame(maxWidth: .infinity, maxHeight: 550) // Certifique-se de que o gradiente tenha o mesmo tamanho do mapa
                                     .edgesIgnoringSafeArea(.top)
                                     .offset(y: 20)
                             )
                             .gesture(
                                 DragGesture()
                                     .onChanged { value in
+                                        // Limita o arrasto para que o mapa não suba demais
                                         if value.translation.height > 0 {
-                                            mapOffset = value.translation.height + 50
+                                            mapOffset = value.translation.height + 50 // Mantém o mapa deslocado para baixo
                                         }
                                     }
                                     .onEnded { _ in
-                                        mapOffset = 50
+                                        mapOffset = 50 // Retorna o mapa para a posição inicial mais abaixo
                                     }
                             )
 
@@ -142,7 +156,7 @@ struct MainView: View {
                             }
 
                             Button(action: {
-                                viewModel.resetRunData()
+                                viewModel.resetRunData() // Reset run data
                                 isRunning = true
                                 locationService.startUpdatingLocation()
                             }) {
@@ -160,15 +174,16 @@ struct MainView: View {
                                     .offset(y: 10)
                             }
                         }
-                        .padding(.bottom, 50)
+                        .padding(.bottom, 50) // Ajuste para posicionar o botão acima do mapa
 
+                        // Informações de atividades, horas e distância
                         VStack(spacing: 30) {
                             HStack {
                                 Text("Your Weekly Activity")
                                     .font(.custom("Avenir Next", size: 26))
                                     .foregroundColor(.black)
                                     .offset(y: 15)
-                                    .offset(x: 20)
+                                    .offset(x: 35)
                                 Spacer()
                                 Button(action: {
                                     // Ação do botão "See more"
@@ -182,13 +197,13 @@ struct MainView: View {
                                             .foregroundColor(.purple)
                                     }
                                     .offset(y: 15)
-                                    .offset(x: -15)
+                                    .offset(x: -35)
                                 }
                             }
-                            .padding(.horizontal)
 
                             HStack {
                                 Spacer()
+
                                 VStack {
                                     Text("\(numberOfActivities)")
                                         .font(.custom("Avenir Next", size: 24))
@@ -198,7 +213,9 @@ struct MainView: View {
                                         .font(.custom("Avenir Next", size: 14))
                                         .foregroundColor(.black)
                                 }
+
                                 Spacer()
+
                                 VStack {
                                     Text(formattedTime(hours: numberOfHours))
                                         .font(.custom("Avenir Next", size: 24))
@@ -208,7 +225,9 @@ struct MainView: View {
                                         .font(.custom("Avenir Next", size: 14))
                                         .foregroundColor(.black)
                                 }
+
                                 Spacer()
+
                                 VStack {
                                     Text("\(distanceInKm, specifier: "%.1f") Km")
                                         .font(.custom("Avenir Next", size: 24))
@@ -218,36 +237,66 @@ struct MainView: View {
                                         .font(.custom("Avenir Next", size: 14))
                                         .foregroundColor(.black)
                                 }
+
                                 Spacer()
                             }
+
                             Spacer()
                         }
 
                         VStack {
-                            GeometryReader { geometry in
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 10) {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    // Primeira Corrida
+                                    HStack {
+                                        Image("first_run")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 100, height: 100)
+                                            .cornerRadius(10)
+                                            .offset(x: 10)
+
+                                        VStack(spacing: 10) {
+                                            Text("Your First Run")
+                                                .font(.custom("Avenir Next", size: 18))
+                                                .bold()
+                                                .foregroundColor(.black)
+                                                .padding(.top)
+                                                .offset(y: 10)
+                                            
+                                            Text("Tips and tricks for your first run.")
+                                                .font(.custom("Avenir Next", size: 14))
+                                                .foregroundColor(.gray)
+                                                .padding(.horizontal)
+                                                .offset(y: -15)
+                                                .frame(maxWidth: .infinity, maxHeight: 100)
+                                        }
+                                    }
+                                    .background(Color(UIColor.systemBackground).opacity(0.95))
+                                    .cornerRadius(12)
+                                    .shadow(radius: 10)
+                                    .frame(width: 350, height: 120) // Tamanho padrão
+                                    .padding()
+                                    
+                                    // Localizações para Correr
+                                    NavigationLink(destination: BestParksView().environmentObject(parkService).environmentObject(locationService)) {
                                         HStack {
-                                            Image("first_run")
+                                            Image("running_locations")
                                                 .resizable()
                                                 .scaledToFill()
                                                 .frame(width: 100, height: 100)
                                                 .cornerRadius(10)
                                                 .offset(x: 10)
-                                                .gesture(
-                                                    DragGesture()
-                                                        .onChanged { _ in isScrollingDisabled = true }
-                                                )
 
                                             VStack(spacing: 10) {
-                                                Text("Your First Run")
+                                                Text("Best Running Locations")
                                                     .font(.custom("Avenir Next", size: 18))
                                                     .bold()
                                                     .foregroundColor(.black)
                                                     .padding(.top)
                                                     .offset(y: 10)
                                                 
-                                                Text("Tips and tricks for your first run.")
+                                                Text("Click here and discover the best locations to run.")
                                                     .font(.custom("Avenir Next", size: 14))
                                                     .foregroundColor(.gray)
                                                     .padding(.horizontal)
@@ -258,195 +307,128 @@ struct MainView: View {
                                         .background(Color(UIColor.systemBackground).opacity(0.95))
                                         .cornerRadius(12)
                                         .shadow(radius: 10)
-                                        .frame(width: 350, height: 120)
+                                        .frame(width: 350, height: 120) // Tamanho padrão
                                         .padding()
-                                        .onTapGesture {
-                                            isScrollingDisabled = true
-                                        }
-                                        
-                                        NavigationLink(destination: ShoeRecommendationView()) {
-                                            HStack {
-                                                Image("shoes")
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 100, height: 100)
-                                                    .cornerRadius(10)
-                                                    .offset(x: 10)
-                                                    .gesture(
-                                                        DragGesture()
-                                                            .onChanged { _ in isScrollingDisabled = true }
-                                                    )
-
-                                                VStack(spacing: 10) {
-                                                    Text("Running Shoes for you?")
-                                                        .font(.custom("Avenir Next", size: 18))
-                                                        .bold()
-                                                        .foregroundColor(.black)
-                                                        .padding(.top)
-                                                        .offset(y: 10)
-                                                    
-                                                    Text("Find out which shoes are best for running.")
-                                                        .font(.custom("Avenir Next", size: 14))
-                                                        .foregroundColor(.gray)
-                                                        .padding(.horizontal)
-                                                        .offset(y: -15)
-                                                        .frame(maxWidth: .infinity, maxHeight: 100)
-                                                }
-                                            }
-                                            .background(Color(UIColor.systemBackground).opacity(0.95))
-                                            .cornerRadius(12)
-                                            .shadow(radius: 10)
-                                            .frame(width: 350, height: 120)
-                                            .padding()
-                                            .onTapGesture {
-                                                isScrollingDisabled = true
+                                    }
+                                    
+                                    Button(action: {
+                                        if let url = URL(string: "spotify://") {
+                                            if UIApplication.shared.canOpenURL(url) {
+                                                UIApplication.shared.open(url)
+                                            } else if let webUrl = URL(string: "https://open.spotify.com") {
+                                                UIApplication.shared.open(webUrl)
                                             }
                                         }
-
-                                        NavigationLink(destination: BestParksView().environmentObject(parkService).environmentObject(locationService)) {
-                                            HStack {
-                                                Image("running_locations")
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 100, height: 100)
-                                                    .cornerRadius(10)
-                                                    .offset(x: 10)
-                                                    .gesture(
-                                                        DragGesture()
-                                                            .onChanged { _ in isScrollingDisabled = true }
-                                                    )
-
-                                                VStack(spacing: 10) {
-                                                    Text("Best Running Locations")
-                                                        .font(.custom("Avenir Next", size: 18))
-                                                        .bold()
-                                                        .foregroundColor(.black)
-                                                        .padding(.top)
-                                                        .offset(y: 10)
-                                                    
-                                                    Text("Click here and discover the best locations to run.")
-                                                        .font(.custom("Avenir Next", size: 14))
-                                                        .foregroundColor(.gray)
-                                                        .padding(.horizontal)
-                                                        .offset(y: -15)
-                                                        .frame(maxWidth: .infinity, maxHeight: 100)
-                                                }
-                                            }
-                                            .background(Color(UIColor.systemBackground).opacity(0.95))
-                                            .cornerRadius(12)
-                                            .shadow(radius: 10)
-                                            .frame(width: 350, height: 120)
-                                            .padding()
-                                            .onTapGesture {
-                                                isScrollingDisabled = true
-                                            }
-                                        }
-                                        
+                                    }) {
                                         HStack {
-                                            Image("marathon2")
+                                            Image("musics")
                                                 .resizable()
                                                 .scaledToFill()
                                                 .frame(width: 100, height: 100)
                                                 .cornerRadius(10)
                                                 .offset(x: 10)
-                                                .gesture(
-                                                    DragGesture()
-                                                        .onChanged { _ in isScrollingDisabled = true }
-                                                )
 
                                             VStack(spacing: 10) {
-                                                Text("Upcoming Marathons")
+                                                Text("Boost Your Run with Music!")
+                                                    .font(.custom("Avenir Next", size: 16))
+                                                    .bold()
+                                                    .foregroundColor(.black)
+                                                    .padding(.top)
+                                                    .offset(y: 10)
+                                                                    
+                                                Text("Click here to connect your favorite music!")
+                                                    .font(.custom("Avenir Next", size: 14))
+                                                    .foregroundColor(.gray)
+                                                    .padding(.horizontal)
+                                                    .offset(y: -15)
+                                                    .frame(maxWidth: .infinity, maxHeight: 100)
+                                            }
+                                        }
+                                        .background(Color(UIColor.systemBackground).opacity(0.95))
+                                        .cornerRadius(12)
+                                        .shadow(radius: 10)
+                                        .frame(width: 350, height: 120) // Tamanho padrão
+                                        .padding()
+                                    }
+                                    
+                                    HStack {
+                                        Image("marathon2")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 100, height: 100)
+                                            .cornerRadius(10)
+                                            .offset(x: 10)
+
+                                        VStack(spacing: 10) {
+                                            Text("Upcoming Marathons")
+                                                .font(.custom("Avenir Next", size: 18))
+                                                .bold()
+                                                .foregroundColor(.black)
+                                                .padding(.top)
+                                                .offset(x: 0)
+                                            
+                                            TabView {
+                                                ForEach(marathonViewModel.upcomingMarathons) { marathon in
+                                                    VStack(alignment: .leading) {
+                                                        Text(marathon.name)
+                                                            .font(.custom("Avenir Next", size: 14))
+                                                            .foregroundColor(.black)
+                                                        Text("\(marathonViewModel.formatDate(marathon.date)) - \(marathon.location)")
+                                                            .font(.custom("Avenir Next", size: 12))
+                                                            .foregroundColor(.gray)
+                                                    }
+                                                    .padding()
+                                                    .cornerRadius(8)
+                                                    .padding(.horizontal)
+                                                    .offset(y: -21)
+                                                    .frame(maxWidth: .infinity, maxHeight: 150) // Ajuste a altura do container retangular
+                                                }
+                                            }
+                                            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                                            .frame(height: 70)
+                                        }
+                                    }
+                                    .background(Color(UIColor.systemBackground))
+                                    .cornerRadius(12)
+                                    .shadow(radius: 10)
+                                    .frame(width: 350, height: 200) // Tamanho padrão
+                                    .padding()
+
+                                    
+                                    NavigationLink(destination: ShoeRecommendationView()) {
+                                        HStack {
+                                            Image("shoes")
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 100, height: 100)
+                                                .cornerRadius(10)
+                                                .offset(x: 10)
+
+                                            VStack(spacing: 10) {
+                                                Text("Running Shoes for you?")
                                                     .font(.custom("Avenir Next", size: 18))
                                                     .bold()
                                                     .foregroundColor(.black)
                                                     .padding(.top)
-                                                    .offset(x: 0)
+                                                    .offset(y: 10)
                                                 
-                                                TabView {
-                                                    ForEach(marathonViewModel.upcomingMarathons) { marathon in
-                                                        VStack(alignment: .leading) {
-                                                            Text(marathon.name)
-                                                                .font(.custom("Avenir Next", size: 14))
-                                                                .foregroundColor(.black)
-                                                            Text("\(marathonViewModel.formatDate(marathon.date)) - \(marathon.location)")
-                                                                .font(.custom("Avenir Next", size: 12))
-                                                                .foregroundColor(.gray)
-                                                        }
-                                                        .padding()
-                                                        .cornerRadius(8)
-                                                        .padding(.horizontal)
-                                                        .offset(y: -21)
-                                                        .frame(maxWidth: .infinity, maxHeight: 150)
-                                                    }
-                                                }
-                                                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-                                                .frame(height: 70)
+                                                Text("Find out which shoes are best for running.")
+                                                    .font(.custom("Avenir Next", size: 14))
+                                                    .foregroundColor(.gray)
+                                                    .padding(.horizontal)
+                                                    .offset(y: -15)
+                                                    .frame(maxWidth: .infinity, maxHeight: 100)
                                             }
                                         }
-                                        .background(Color(UIColor.systemBackground))
+                                        .background(Color(UIColor.systemBackground).opacity(0.95))
                                         .cornerRadius(12)
                                         .shadow(radius: 10)
-                                        .frame(width: 350, height: 200)
+                                        .frame(width: 350, height: 120) // Tamanho padrão
                                         .padding()
-                                        .onTapGesture {
-                                            isScrollingDisabled = true
-                                        }
-                                        
-                                        // Adicionando o botão de música
-                                        Button(action: {
-                                            if let url = URL(string: "spotify://") {
-                                                if UIApplication.shared.canOpenURL(url) {
-                                                    UIApplication.shared.open(url)
-                                                } else if let webUrl = URL(string: "https://open.spotify.com") {
-                                                    UIApplication.shared.open(webUrl)
-                                                }
-                                            }
-                                        }) {
-                                            HStack {
-                                                Image("musics")
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 100, height: 100)
-                                                    .cornerRadius(10)
-                                                    .offset(x: 10)
-                                                    .gesture(
-                                                        DragGesture()
-                                                            .onChanged { _ in isScrollingDisabled = true }
-                                                    )
-
-                                                VStack(spacing: 10) {
-                                                    Text("Boost Your Run with Music!")
-                                                        .font(.custom("Avenir Next", size: 16))
-                                                        .bold()
-                                                        .foregroundColor(.black)
-                                                        .padding(.top)
-                                                        .offset(y: 10)
-                                                    
-                                                    Text("Click here to connect your favorite music!")
-                                                        .font(.custom("Avenir Next", size: 14))
-                                                        .foregroundColor(.gray)
-                                                        .padding(.horizontal)
-                                                        .offset(y: -15)
-                                                        .frame(maxWidth: .infinity, maxHeight: 100)
-                                                }
-                                            }
-                                            .background(Color(UIColor.systemBackground).opacity(0.95))
-                                            .cornerRadius(12)
-                                            .shadow(radius: 10)
-                                            .frame(width: 350, height: 120)
-                                            .padding()
-                                        }
                                     }
-                                    .gesture(
-                                        DragGesture()
-                                            .onChanged { _ in
-                                                isScrollingDisabled = true
-                                            }
-                                    )
                                 }
                             }
-                            .offset(y: 60)
-                            .offset(x: 5)
+                            .offset(y: -150) // Ajuste a posição vertical dos contêineres aqui
                         }
                     }
                     .tabItem {
@@ -457,17 +439,12 @@ struct MainView: View {
 
                     NavigationView {
                         VStack {
-                            Text("Activities")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .padding()
-                            Spacer()
+                            MapView(region: $locationService.region)
                         }
-                        .navigationTitle("Activities")
                     }
                     .tabItem {
-                        Image(systemName: "list.bullet")
-                        Text("Activities")
+                        Image(systemName: "map")
+                        Text("Map")
                     }
                     .tag(2)
                 }
@@ -494,6 +471,7 @@ struct MainView_Previews: PreviewProvider {
         
         let weatherService = WeatherService()
         
+        // Use dados fictícios para a visualização
         return MainView()
             .environmentObject(locationService)
             .environmentObject(RunViewModel())
