@@ -32,7 +32,7 @@ struct MainView: View {
         appearance.configureWithOpaqueBackground()
         
         // Criação de um efeito de desfoque com fundo branco translúcido
-        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         blurEffectView.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 49))
@@ -131,7 +131,7 @@ struct MainView: View {
                             .offset(y: mapOffset)
                             .offset(y: 20)
                             .overlay(
-                                RadialGradient(gradient: Gradient(colors: [.clear, .white.opacity(2.9)]), center: .center, startRadius: 50, endRadius: 550)
+                                RadialGradient(gradient: Gradient(colors: [.clear, .white.opacity(2.0)]), center: .center, startRadius: 50, endRadius: 550)
                                     .offset(y: 50) // Ajuste a posição do gradiente para baixo
                                     .frame(maxWidth: .infinity, maxHeight: 550) // Certifique-se de que o gradiente tenha o mesmo tamanho do mapa
                                     .edgesIgnoringSafeArea(.top)
@@ -186,9 +186,7 @@ struct MainView: View {
                                     .offset(y: 15)
                                     .offset(x: 35)
                                 Spacer()
-                                Button(action: {
-                                    // Ação do botão "See more"
-                                }) {
+                                NavigationLink(destination: SeeMoreView()) {
                                     HStack {
                                         Text("See more")
                                             .font(.custom("Avenir Next", size: 20))

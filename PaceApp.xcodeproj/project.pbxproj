@@ -32,6 +32,7 @@
 		0BCA3F5B2C3E3A27009E30D0 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F5A2C3E3A27009E30D0 /* WeatherService.swift */; };
 		0BCA3F602C3E3A6D009E30D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F5F2C3E3A6D009E30D0 /* Model.swift */; };
 		0BCA3F652C3F0D02009E30D0 /* RouteTrackingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F642C3F0D02009E30D0 /* RouteTrackingMapView.swift */; };
+		0BCA3F6B2C403042009E30D0 /* SeeMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F6A2C403042009E30D0 /* SeeMoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		0BCA3F612C3ED291009E30D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BCA3F632C3ED46E009E30D0 /* PaceAppDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PaceAppDebug.entitlements; sourceTree = "<group>"; };
 		0BCA3F642C3F0D02009E30D0 /* RouteTrackingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTrackingMapView.swift; sourceTree = "<group>"; };
+		0BCA3F6A2C403042009E30D0 /* SeeMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				0BCA3F402C3E32D4009E30D0 /* UserTrackingMapView.swift */,
 				0BCA3F422C3E32F2009E30D0 /* WorkoutCompletedView.swift */,
 				0BCA3F642C3F0D02009E30D0 /* RouteTrackingMapView.swift */,
+				0BCA3F6A2C403042009E30D0 /* SeeMoreView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				0BCA3F652C3F0D02009E30D0 /* RouteTrackingMapView.swift in Sources */,
 				0BCA3F552C3E33CC009E30D0 /* LocationService.swift in Sources */,
 				0BCA3F532C3E33B7009E30D0 /* HealthKit.swift in Sources */,
+				0BCA3F6B2C403042009E30D0 /* SeeMoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

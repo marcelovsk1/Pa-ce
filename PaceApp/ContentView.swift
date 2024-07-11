@@ -1,24 +1,14 @@
+//import SwiftUI
 //
-//  ContentView.swift
-//  PaceApp
+//struct ContentView: View {
+//    @Binding var lastSelectedTab: Int // Binding to keep track of the last selected tab
 //
-//  Created by Marcelo Amaral Alves on 2024-07-09.
+//    var body: some View {
+//        MainView(selectedTab: $lastSelectedTab) // Pass the binding to the MainView
+//    }
+//}
 //
-
-import SwiftUI
-
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
-
-#Preview {
-    ContentView()
-}
+//
+//#Preview {
+//    ContentView()
+//}

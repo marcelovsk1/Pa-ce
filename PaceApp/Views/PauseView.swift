@@ -122,6 +122,7 @@ struct PausedView: View {
                                     .foregroundColor(.black)
                             }
                             .gridCellColumns(1)
+                            .offset(x: 10)
 
                             VStack {
                                 Text(formattedPace(pace))
@@ -162,6 +163,7 @@ struct PausedView: View {
                                     .foregroundColor(.black)
                             }
                             .gridCellColumns(1)
+                            .offset(x: 10)
 
                             VStack {
                                 Text(String(format: "%.2f", elevation) + " m")
@@ -173,6 +175,7 @@ struct PausedView: View {
                                     .foregroundColor(.black)
                             }
                             .gridCellColumns(1)
+                            .offset(x: -10)
 
                             VStack {
                                 Text(heartRate != nil ? "\(heartRate!)" : "--")
@@ -184,6 +187,7 @@ struct PausedView: View {
                                     .foregroundColor(.black)
                             }
                             .gridCellColumns(1)
+                            .offset(x: -10)
                         }
                     }
                     .background(Color.white.opacity(0.1))

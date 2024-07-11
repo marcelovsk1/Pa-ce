@@ -64,7 +64,7 @@ struct WorkoutCompletedView: View {
                         .font(.custom("Avenir Next", size: 20))
                         .foregroundColor(Color.green)
                 }
-                .offset(x: -40)
+                .offset(x: -45)
                 .offset(y: -20)
                 
                 // Placeholder for run name
