@@ -241,7 +241,7 @@ struct MainView: View {
 
                                 Spacer()
                             }
-
+                            .offset(y: -10)
                             Spacer()
                         }
 
@@ -256,7 +256,7 @@ struct MainView: View {
                                         runningShoesForYouView.id(4)
                                     }
                                 }
-                                .offset(y: -130) // Ajuste a posição vertical dos contêineres aqui
+                                .offset(y: -150) // Ajuste a posição vertical dos contêineres aqui
                                 .onReceive(timer) { _ in
                                     guard !isScrollingDisabled else { return }
                                     withAnimation {
@@ -264,10 +264,10 @@ struct MainView: View {
                                         proxy.scrollTo(currentPage, anchor: .center)
                                     }
                                 }
-                                
-                                PageControl(numberOfPages: 5, currentPage: $currentPage)
-                                    .frame(width: 50, height: 50)
-                                    .offset(y: -205)
+
+                                CustomPageControl(numberOfPages: 5, currentPage: $currentPage)
+                                    .frame(height: 20)
+                                    .offset(y: -210) // Move para cima da tela
                             }
                         }
                     }
@@ -329,7 +329,7 @@ struct MainView: View {
         }
         .background(Color(UIColor.systemBackground).opacity(0.95))
         .cornerRadius(12)
-        .shadow(radius: 10)
+        .shadow(radius: 5)
         .frame(width: 350, height: 120) // Tamanho padrão
         .padding()
     }
@@ -362,7 +362,7 @@ struct MainView: View {
             }
             .background(Color(UIColor.systemBackground).opacity(0.95))
             .cornerRadius(12)
-            .shadow(radius: 10)
+            .shadow(radius: 5)
             .frame(width: 350, height: 120) // Tamanho padrão
             .padding()
         }
@@ -404,7 +404,7 @@ struct MainView: View {
             }
             .background(Color(UIColor.systemBackground).opacity(0.95))
             .cornerRadius(12)
-            .shadow(radius: 10)
+            .shadow(radius: 5)
             .frame(width: 350, height: 120) // Tamanho padrão
             .padding()
         }
@@ -450,7 +450,7 @@ struct MainView: View {
         }
         .background(Color(UIColor.systemBackground))
         .cornerRadius(12)
-        .shadow(radius: 10)
+        .shadow(radius: 5)
         .frame(width: 350, height: 200) // Tamanho padrão
         .padding()
     }
@@ -490,20 +490,18 @@ struct MainView: View {
     }
 }
 
-struct PageControl: UIViewRepresentable {
+struct CustomPageControl: View {
     var numberOfPages: Int
     @Binding var currentPage: Int
 
-    func makeUIView(context: Context) -> UIPageControl {
-        let control = UIPageControl()
-        control.numberOfPages = numberOfPages
-        control.currentPageIndicatorTintColor = UIColor.purple
-        control.pageIndicatorTintColor = UIColor.lightGray
-        return control
-    }
-
-    func updateUIView(_ uiView: UIPageControl, context: Context) {
-        uiView.currentPage = currentPage
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach(0..<numberOfPages, id: \.self) { index in
+                Rectangle()
+                    .fill(index == currentPage ? Color.purple : Color.gray)
+                    .frame(width: 20, height: 5)
+            }
+        }
     }
 }
 
