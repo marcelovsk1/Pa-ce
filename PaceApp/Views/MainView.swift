@@ -256,13 +256,18 @@ struct MainView: View {
                                         runningShoesForYouView.id(4)
                                     }
                                 }
-                                .offset(y: -150) // Ajuste a posição vertical dos contêineres aqui
+                                .offset(y: -130) // Ajuste a posição vertical dos contêineres aqui
                                 .onReceive(timer) { _ in
+                                    guard !isScrollingDisabled else { return }
                                     withAnimation {
                                         currentPage = (currentPage + 1) % 5
                                         proxy.scrollTo(currentPage, anchor: .center)
                                     }
                                 }
+                                
+                                PageControl(numberOfPages: 5, currentPage: $currentPage)
+                                    .frame(width: 50, height: 50)
+                                    .offset(y: -205)
                             }
                         }
                     }
@@ -482,6 +487,23 @@ struct MainView: View {
             .frame(width: 350, height: 120) // Tamanho padrão
             .padding()
         }
+    }
+}
+
+struct PageControl: UIViewRepresentable {
+    var numberOfPages: Int
+    @Binding var currentPage: Int
+
+    func makeUIView(context: Context) -> UIPageControl {
+        let control = UIPageControl()
+        control.numberOfPages = numberOfPages
+        control.currentPageIndicatorTintColor = UIColor.purple
+        control.pageIndicatorTintColor = UIColor.lightGray
+        return control
+    }
+
+    func updateUIView(_ uiView: UIPageControl, context: Context) {
+        uiView.currentPage = currentPage
     }
 }
 
