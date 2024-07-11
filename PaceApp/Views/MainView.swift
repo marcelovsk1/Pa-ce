@@ -19,6 +19,8 @@ struct MainView: View {
     let numberOfHours = 5
     let distanceInKm = 15.5
 
+    let timer = Timer.publish(every: 3.5, on: .main, in: .common).autoconnect()
+
     func formattedTime(hours: Int) -> String {
         let h = hours
         let m = (hours * 60) % 60
@@ -243,191 +245,25 @@ struct MainView: View {
                             Spacer()
                         }
 
-                        VStack {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack {
-                                    // Primeira Corrida
+                        ScrollViewReader { proxy in
+                            VStack {
+                                ScrollView(.horizontal, showsIndicators: false) {
                                     HStack {
-                                        Image("first_run")
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 100, height: 100)
-                                            .cornerRadius(10)
-                                            .offset(x: 10)
-
-                                        VStack(spacing: 10) {
-                                            Text("Your First Run")
-                                                .font(.custom("Avenir Next", size: 18))
-                                                .bold()
-                                                .foregroundColor(.black)
-                                                .padding(.top)
-                                                .offset(y: 10)
-                                            
-                                            Text("Tips and tricks for your first run.")
-                                                .font(.custom("Avenir Next", size: 14))
-                                                .foregroundColor(.gray)
-                                                .padding(.horizontal)
-                                                .offset(y: -15)
-                                                .frame(maxWidth: .infinity, maxHeight: 100)
-                                        }
+                                        firstRunView.id(0)
+                                        runningLocationsView.id(1)
+                                        boostYourRunWithMusicView.id(2)
+                                        upcomingMarathonsView.id(3)
+                                        runningShoesForYouView.id(4)
                                     }
-                                    .background(Color(UIColor.systemBackground).opacity(0.95))
-                                    .cornerRadius(12)
-                                    .shadow(radius: 10)
-                                    .frame(width: 350, height: 120) // Tamanho padrão
-                                    .padding()
-                                    
-                                    // Localizações para Correr
-                                    NavigationLink(destination: BestParksView().environmentObject(parkService).environmentObject(locationService)) {
-                                        HStack {
-                                            Image("running_locations")
-                                                .resizable()
-                                                .scaledToFill()
-                                                .frame(width: 100, height: 100)
-                                                .cornerRadius(10)
-                                                .offset(x: 10)
-
-                                            VStack(spacing: 10) {
-                                                Text("Best Running Locations")
-                                                    .font(.custom("Avenir Next", size: 18))
-                                                    .bold()
-                                                    .foregroundColor(.black)
-                                                    .padding(.top)
-                                                    .offset(y: 10)
-                                                
-                                                Text("Click here and discover the best locations to run.")
-                                                    .font(.custom("Avenir Next", size: 14))
-                                                    .foregroundColor(.gray)
-                                                    .padding(.horizontal)
-                                                    .offset(y: -15)
-                                                    .frame(maxWidth: .infinity, maxHeight: 100)
-                                            }
-                                        }
-                                        .background(Color(UIColor.systemBackground).opacity(0.95))
-                                        .cornerRadius(12)
-                                        .shadow(radius: 10)
-                                        .frame(width: 350, height: 120) // Tamanho padrão
-                                        .padding()
-                                    }
-                                    
-                                    Button(action: {
-                                        if let url = URL(string: "spotify://") {
-                                            if UIApplication.shared.canOpenURL(url) {
-                                                UIApplication.shared.open(url)
-                                            } else if let webUrl = URL(string: "https://open.spotify.com") {
-                                                UIApplication.shared.open(webUrl)
-                                            }
-                                        }
-                                    }) {
-                                        HStack {
-                                            Image("musics")
-                                                .resizable()
-                                                .scaledToFill()
-                                                .frame(width: 100, height: 100)
-                                                .cornerRadius(10)
-                                                .offset(x: 10)
-
-                                            VStack(spacing: 10) {
-                                                Text("Boost Your Run with Music!")
-                                                    .font(.custom("Avenir Next", size: 16))
-                                                    .bold()
-                                                    .foregroundColor(.black)
-                                                    .padding(.top)
-                                                    .offset(y: 10)
-                                                                    
-                                                Text("Click here to connect your favorite music!")
-                                                    .font(.custom("Avenir Next", size: 14))
-                                                    .foregroundColor(.gray)
-                                                    .padding(.horizontal)
-                                                    .offset(y: -15)
-                                                    .frame(maxWidth: .infinity, maxHeight: 100)
-                                            }
-                                        }
-                                        .background(Color(UIColor.systemBackground).opacity(0.95))
-                                        .cornerRadius(12)
-                                        .shadow(radius: 10)
-                                        .frame(width: 350, height: 120) // Tamanho padrão
-                                        .padding()
-                                    }
-                                    
-                                    HStack {
-                                        Image("marathon2")
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 100, height: 100)
-                                            .cornerRadius(10)
-                                            .offset(x: 10)
-
-                                        VStack(spacing: 10) {
-                                            Text("Upcoming Marathons")
-                                                .font(.custom("Avenir Next", size: 18))
-                                                .bold()
-                                                .foregroundColor(.black)
-                                                .padding(.top)
-                                                .offset(x: 0)
-                                            
-                                            TabView {
-                                                ForEach(marathonViewModel.upcomingMarathons) { marathon in
-                                                    VStack(alignment: .leading) {
-                                                        Text(marathon.name)
-                                                            .font(.custom("Avenir Next", size: 14))
-                                                            .foregroundColor(.black)
-                                                        Text("\(marathonViewModel.formatDate(marathon.date)) - \(marathon.location)")
-                                                            .font(.custom("Avenir Next", size: 12))
-                                                            .foregroundColor(.gray)
-                                                    }
-                                                    .padding()
-                                                    .cornerRadius(8)
-                                                    .padding(.horizontal)
-                                                    .offset(y: -21)
-                                                    .frame(maxWidth: .infinity, maxHeight: 150) // Ajuste a altura do container retangular
-                                                }
-                                            }
-                                            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-                                            .frame(height: 70)
-                                        }
-                                    }
-                                    .background(Color(UIColor.systemBackground))
-                                    .cornerRadius(12)
-                                    .shadow(radius: 10)
-                                    .frame(width: 350, height: 200) // Tamanho padrão
-                                    .padding()
-
-                                    
-                                    NavigationLink(destination: ShoeRecommendationView()) {
-                                        HStack {
-                                            Image("shoes")
-                                                .resizable()
-                                                .scaledToFill()
-                                                .frame(width: 100, height: 100)
-                                                .cornerRadius(10)
-                                                .offset(x: 10)
-
-                                            VStack(spacing: 10) {
-                                                Text("Running Shoes for you?")
-                                                    .font(.custom("Avenir Next", size: 18))
-                                                    .bold()
-                                                    .foregroundColor(.black)
-                                                    .padding(.top)
-                                                    .offset(y: 10)
-                                                
-                                                Text("Find out which shoes are best for running.")
-                                                    .font(.custom("Avenir Next", size: 14))
-                                                    .foregroundColor(.gray)
-                                                    .padding(.horizontal)
-                                                    .offset(y: -15)
-                                                    .frame(maxWidth: .infinity, maxHeight: 100)
-                                            }
-                                        }
-                                        .background(Color(UIColor.systemBackground).opacity(0.95))
-                                        .cornerRadius(12)
-                                        .shadow(radius: 10)
-                                        .frame(width: 350, height: 120) // Tamanho padrão
-                                        .padding()
+                                }
+                                .offset(y: -150) // Ajuste a posição vertical dos contêineres aqui
+                                .onReceive(timer) { _ in
+                                    withAnimation {
+                                        currentPage = (currentPage + 1) % 5
+                                        proxy.scrollTo(currentPage, anchor: .center)
                                     }
                                 }
                             }
-                            .offset(y: -150) // Ajuste a posição vertical dos contêineres aqui
                         }
                     }
                     .tabItem {
@@ -459,6 +295,193 @@ struct MainView: View {
             .edgesIgnoringSafeArea(.all)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    var firstRunView: some View {
+        HStack {
+            Image("first_run")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 100, height: 100)
+                .cornerRadius(10)
+                .offset(x: 10)
+
+            VStack(spacing: 10) {
+                Text("Your First Run")
+                    .font(.custom("Avenir Next", size: 18))
+                    .bold()
+                    .foregroundColor(.black)
+                    .padding(.top)
+                    .offset(y: 10)
+                
+                Text("Tips and tricks for your first run.")
+                    .font(.custom("Avenir Next", size: 14))
+                    .foregroundColor(.gray)
+                    .padding(.horizontal)
+                    .offset(y: -15)
+                    .frame(maxWidth: .infinity, maxHeight: 100)
+            }
+        }
+        .background(Color(UIColor.systemBackground).opacity(0.95))
+        .cornerRadius(12)
+        .shadow(radius: 10)
+        .frame(width: 350, height: 120) // Tamanho padrão
+        .padding()
+    }
+    
+    var runningLocationsView: some View {
+        NavigationLink(destination: BestParksView().environmentObject(parkService).environmentObject(locationService)) {
+            HStack {
+                Image("running_locations")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(10)
+                    .offset(x: 10)
+
+                VStack(spacing: 10) {
+                    Text("Best Running Locations")
+                        .font(.custom("Avenir Next", size: 18))
+                        .bold()
+                        .foregroundColor(.black)
+                        .padding(.top)
+                        .offset(y: 10)
+                    
+                    Text("Click here and discover the best locations to run.")
+                        .font(.custom("Avenir Next", size: 14))
+                        .foregroundColor(.gray)
+                        .padding(.horizontal)
+                        .offset(y: -15)
+                        .frame(maxWidth: .infinity, maxHeight: 100)
+                }
+            }
+            .background(Color(UIColor.systemBackground).opacity(0.95))
+            .cornerRadius(12)
+            .shadow(radius: 10)
+            .frame(width: 350, height: 120) // Tamanho padrão
+            .padding()
+        }
+    }
+    
+    var boostYourRunWithMusicView: some View {
+        Button(action: {
+            if let url = URL(string: "spotify://") {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                } else if let webUrl = URL(string: "https://open.spotify.com") {
+                    UIApplication.shared.open(webUrl)
+                }
+            }
+        }) {
+            HStack {
+                Image("musics")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(10)
+                    .offset(x: 10)
+
+                VStack(spacing: 10) {
+                    Text("Boost Your Run with Music!")
+                        .font(.custom("Avenir Next", size: 16))
+                        .bold()
+                        .foregroundColor(.black)
+                        .padding(.top)
+                        .offset(y: 10)
+                                    
+                    Text("Click here to connect your favorite music!")
+                        .font(.custom("Avenir Next", size: 14))
+                        .foregroundColor(.gray)
+                        .padding(.horizontal)
+                        .offset(y: -15)
+                        .frame(maxWidth: .infinity, maxHeight: 100)
+                }
+            }
+            .background(Color(UIColor.systemBackground).opacity(0.95))
+            .cornerRadius(12)
+            .shadow(radius: 10)
+            .frame(width: 350, height: 120) // Tamanho padrão
+            .padding()
+        }
+    }
+    
+    var upcomingMarathonsView: some View {
+        HStack {
+            Image("marathon2")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 100, height: 100)
+                .cornerRadius(10)
+                .offset(x: 10)
+
+            VStack(spacing: 10) {
+                Text("Upcoming Marathons")
+                    .font(.custom("Avenir Next", size: 18))
+                    .bold()
+                    .foregroundColor(.black)
+                    .padding(.top)
+                    .offset(x: 0)
+                
+                TabView {
+                    ForEach(marathonViewModel.upcomingMarathons) { marathon in
+                        VStack(alignment: .leading) {
+                            Text(marathon.name)
+                                .font(.custom("Avenir Next", size: 14))
+                                .foregroundColor(.black)
+                            Text("\(marathonViewModel.formatDate(marathon.date)) - \(marathon.location)")
+                                .font(.custom("Avenir Next", size: 12))
+                                .foregroundColor(.gray)
+                        }
+                        .padding()
+                        .cornerRadius(8)
+                        .padding(.horizontal)
+                        .offset(y: -21)
+                        .frame(maxWidth: .infinity, maxHeight: 150) // Ajuste a altura do container retangular
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                .frame(height: 70)
+            }
+        }
+        .background(Color(UIColor.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 10)
+        .frame(width: 350, height: 200) // Tamanho padrão
+        .padding()
+    }
+    
+    var runningShoesForYouView: some View {
+        NavigationLink(destination: ShoeRecommendationView()) {
+            HStack {
+                Image("shoes")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(10)
+                    .offset(x: 10)
+
+                VStack(spacing: 10) {
+                    Text("Running Shoes for you?")
+                        .font(.custom("Avenir Next", size: 18))
+                        .bold()
+                        .foregroundColor(.black)
+                        .padding(.top)
+                        .offset(y: 10)
+                    
+                    Text("Find out which shoes are best for running.")
+                        .font(.custom("Avenir Next", size: 14))
+                        .foregroundColor(.gray)
+                        .padding(.horizontal)
+                        .offset(y: -15)
+                        .frame(maxWidth: .infinity, maxHeight: 100)
+                }
+            }
+            .background(Color(UIColor.systemBackground).opacity(0.95))
+            .cornerRadius(12)
+            .shadow(radius: 10)
+            .frame(width: 350, height: 120) // Tamanho padrão
+            .padding()
+        }
     }
 }
 
