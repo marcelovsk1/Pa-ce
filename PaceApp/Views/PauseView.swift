@@ -148,6 +148,7 @@ struct PausedView: View {
                                     .foregroundColor(.black)
                             }
                             .gridCellColumns(1)
+                            .offset(x: -10)
                         }
 
                         Divider()
@@ -175,7 +176,7 @@ struct PausedView: View {
                                     .foregroundColor(.black)
                             }
                             .gridCellColumns(1)
-                            .offset(x: -10)
+//                            .offset(x: -10)
 
                             VStack {
                                 Text(heartRate != nil ? "\(heartRate!)" : "--")
@@ -216,7 +217,7 @@ struct PausedView: View {
 
                     VStack {
                         if showWarning {
-                            Text("Hold the flag for 3 seconds to finish the workout")
+                            Text("Hold the flag for 2 seconds to finish the workout")
                                 .font(.custom("Coolvetica", size: 16))
                                 .foregroundColor(.gray)
                                 .padding(.bottom, 10)
@@ -241,7 +242,7 @@ struct PausedView: View {
                                 .clipShape(Circle())
                                 .padding()
                                 .shadow(radius: 5)
-                                .onLongPressGesture(minimumDuration: 3) {
+                                .onLongPressGesture(minimumDuration: 1.5) {
                                     navigateToCompleted = true
                                     // Feedback tátil ao iniciar o gesto de pressionar longamente
                                     let generator = UIImpactFeedbackGenerator(style: .heavy)
