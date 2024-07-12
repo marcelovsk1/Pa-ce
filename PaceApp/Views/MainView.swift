@@ -10,11 +10,11 @@ struct MainView: View {
     @State private var isRunning = false
     @State private var mapOffset: CGFloat = 50
     @State private var navigateToMainView = false
+    @State private var navigateToRunningView = false
     @State private var currentPage = 0
-    @State private var isScrollingDisabled = false // Estado para desabilitar o scroll
-    @State private var selectedTab = 1 // Estado para controlar a aba selecionada
+    @State private var isScrollingDisabled = false
+    @State private var selectedTab = 1
 
-    // Exemplo de dados simulados
     let numberOfActivities = 10
     let numberOfHours = 5
     let distanceInKm = 15.5
@@ -30,21 +30,20 @@ struct MainView: View {
     func setupTabBarAppearance() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        
-        // Criação de um efeito de desfoque com fundo branco translúcido
+
         let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         blurEffectView.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 49))
-        
+
         UIGraphicsBeginImageContext(blurEffectView.frame.size)
         blurEffectView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         appearance.backgroundImage = image
-        appearance.shadowImage = UIImage() // Remove a linha cinza
-        appearance.shadowColor = .clear // Remove a sombra
+        appearance.shadowImage = UIImage()
+        appearance.shadowColor = .clear
 
         let shadow = NSShadow()
         shadow.shadowColor = UIColor.black.withAlphaComponent(0.25)
@@ -64,7 +63,7 @@ struct MainView: View {
 
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
-        
+
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.purple
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightGray
     }
@@ -72,11 +71,8 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                // Adiciona a logo na barra de navegação personalizada
                 HStack {
-                    Button(action: {
-                        // Ação do botão
-                    }) {
+                    Button(action: {}) {
                         Text("MA")
                             .font(.subheadline)
                             .foregroundColor(.white)
@@ -88,7 +84,7 @@ struct MainView: View {
                             .offset(x: 5)
                     }
                     .padding(.leading)
-                    
+
                     Spacer()
                     Image("Pace_Logo")
                         .resizable()
@@ -96,17 +92,30 @@ struct MainView: View {
                         .frame(width: 120, height: 100)
                         .padding(.top, 10)
                         .offset(y: 15)
-                        .offset(x: -25)
+                        .offset(x: 15)
                         .shadow(radius: 0)
                     Spacer()
+
+                    // Add GPS text and signal bars
+                    HStack {
+                        Text("GPS")
+                            .font(.subheadline)
+                            .foregroundColor(.green)
+                        HStack(spacing: 2) {
+                            Image(systemName: "cellularbars")
+                                .foregroundColor(.green)
+                        }
+                    }
+                    .padding(.trailing)
+                    .offset(y: 20)
+                    .offset(x: -5)
                 }
                 .background(Color.white)
                 .shadow(radius: 1)
 
-                // Linha divisória sutil
                 Divider()
                     .background(Color.gray.opacity(0.3))
-                
+
                 TabView(selection: $selectedTab) {
                     NavigationView {
                         VStack {
@@ -123,37 +132,35 @@ struct MainView: View {
                         Text("Activities")
                     }
                     .tag(0)
-                    
+
                     ZStack {
-                        // Map com efeito de Vignette
                         UserTrackingMapView(region: $locationService.region)
-                            .frame(maxWidth: .infinity, maxHeight: 550) // Ajuste a altura do mapa
+                            .frame(maxWidth: .infinity, maxHeight: 550)
                             .offset(y: mapOffset)
                             .offset(y: 20)
                             .overlay(
                                 RadialGradient(gradient: Gradient(colors: [.clear, .white.opacity(2.0)]), center: .center, startRadius: 50, endRadius: 550)
-                                    .offset(y: 50) // Ajuste a posição do gradiente para baixo
-                                    .frame(maxWidth: .infinity, maxHeight: 550) // Certifique-se de que o gradiente tenha o mesmo tamanho do mapa
+                                    .offset(y: 50)
+                                    .frame(maxWidth: .infinity, maxHeight: 550)
                                     .edgesIgnoringSafeArea(.top)
                                     .offset(y: 20)
                             )
                             .gesture(
                                 DragGesture()
                                     .onChanged { value in
-                                        // Limita o arrasto para que o mapa não suba demais
                                         if value.translation.height > 0 {
-                                            mapOffset = value.translation.height + 50 // Mantém o mapa deslocado para baixo
+                                            mapOffset = value.translation.height + 50
                                         }
                                     }
                                     .onEnded { _ in
-                                        mapOffset = 50 // Retorna o mapa para a posição inicial mais abaixo
+                                        mapOffset = 50
                                     }
                             )
 
                         VStack {
                             Spacer()
 
-                            NavigationLink(destination: RunningView(navigateToMainView: $navigateToMainView).environmentObject(locationService), isActive: $isRunning) {
+                            NavigationLink(destination: CountdownView(navigateToRunningView: $navigateToRunningView), isActive: $isRunning) {
                                 EmptyView()
                             }
 
@@ -175,9 +182,8 @@ struct MainView: View {
                                     .offset(y: 10)
                             }
                         }
-                        .padding(.bottom, 50) // Ajuste para posicionar o botão acima do mapa
+                        .padding(.bottom, 50)
 
-                        // Informações de atividades, horas e distância
                         VStack(spacing: 30) {
                             HStack {
                                 Text("Your Weekly Activity")
@@ -254,7 +260,7 @@ struct MainView: View {
                                         runningShoesForYouView.id(4)
                                     }
                                 }
-                                .offset(y: -150) // Ajuste a posição vertical dos contêineres aqui
+                                .offset(y: -150)
                                 .onReceive(timer) { _ in
                                     guard !isScrollingDisabled else { return }
                                     withAnimation {
@@ -265,7 +271,7 @@ struct MainView: View {
 
                                 CustomPageControl(numberOfPages: 5, currentPage: $currentPage)
                                     .frame(height: 20)
-                                    .offset(y: -210) // Move para cima da tela
+                                    .offset(y: -210)
                             }
                         }
                     }
@@ -290,7 +296,7 @@ struct MainView: View {
             .onAppear {
                 locationService.checkLocationAuthorization()
                 setupTabBarAppearance()
-                selectedTab = 1 // Define a aba "Run" como padrão
+                selectedTab = 1
             }
             .navigationBarTitle("", displayMode: .inline)
             .background(RadialGradient(gradient: Gradient(colors: [.clear, Color(red: 1.0, green: 0.98, blue: 0.94)]), center: .center, startRadius: 0, endRadius: 1200))
@@ -316,7 +322,7 @@ struct MainView: View {
                     .foregroundColor(.black)
                     .padding(.top)
                     .offset(y: 10)
-                
+
                 Text("Tips and tricks for your first run.")
                     .font(.custom("Avenir Next", size: 14))
                     .foregroundColor(.gray)
@@ -328,10 +334,10 @@ struct MainView: View {
         .background(Color(UIColor.systemBackground).opacity(0.95))
         .cornerRadius(12)
         .shadow(radius: 5)
-        .frame(width: 350, height: 120) // Tamanho padrão
+        .frame(width: 350, height: 120)
         .padding()
     }
-    
+
     var runningLocationsView: some View {
         NavigationLink(destination: BestParksView().environmentObject(parkService).environmentObject(locationService)) {
             HStack {
@@ -349,7 +355,7 @@ struct MainView: View {
                         .foregroundColor(.black)
                         .padding(.top)
                         .offset(y: 10)
-                    
+
                     Text("Click here and discover the best locations to run.")
                         .font(.custom("Avenir Next", size: 14))
                         .foregroundColor(.gray)
@@ -361,11 +367,11 @@ struct MainView: View {
             .background(Color(UIColor.systemBackground).opacity(0.95))
             .cornerRadius(12)
             .shadow(radius: 5)
-            .frame(width: 350, height: 120) // Tamanho padrão
+            .frame(width: 350, height: 120)
             .padding()
         }
     }
-    
+
     var boostYourRunWithMusicView: some View {
         Button(action: {
             if let url = URL(string: "spotify://") {
@@ -391,7 +397,7 @@ struct MainView: View {
                         .foregroundColor(.black)
                         .padding(.top)
                         .offset(y: 10)
-                                    
+
                     Text("Click here to connect your favorite music!")
                         .font(.custom("Avenir Next", size: 14))
                         .foregroundColor(.gray)
@@ -403,11 +409,11 @@ struct MainView: View {
             .background(Color(UIColor.systemBackground).opacity(0.95))
             .cornerRadius(12)
             .shadow(radius: 5)
-            .frame(width: 350, height: 120) // Tamanho padrão
+            .frame(width: 350, height: 120)
             .padding()
         }
     }
-    
+
     var upcomingMarathonsView: some View {
         HStack {
             Image("marathon2")
@@ -424,7 +430,7 @@ struct MainView: View {
                     .foregroundColor(.black)
                     .padding(.top)
                     .offset(x: 0)
-                
+
                 TabView {
                     ForEach(marathonViewModel.upcomingMarathons) { marathon in
                         VStack(alignment: .leading) {
@@ -439,7 +445,7 @@ struct MainView: View {
                         .cornerRadius(8)
                         .padding(.horizontal)
                         .offset(y: -21)
-                        .frame(maxWidth: .infinity, maxHeight: 150) // Ajuste a altura do container retangular
+                        .frame(maxWidth: .infinity, maxHeight: 150)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
@@ -449,10 +455,10 @@ struct MainView: View {
         .background(Color(UIColor.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 5)
-        .frame(width: 350, height: 200) // Tamanho padrão
+        .frame(width: 350, height: 200)
         .padding()
     }
-    
+
     var runningShoesForYouView: some View {
         NavigationLink(destination: ShoeRecommendationView()) {
             HStack {
@@ -470,7 +476,7 @@ struct MainView: View {
                         .foregroundColor(.black)
                         .padding(.top)
                         .offset(y: 10)
-                    
+
                     Text("Find out which shoes are best for running.")
                         .font(.custom("Avenir Next", size: 14))
                         .foregroundColor(.gray)
@@ -482,7 +488,7 @@ struct MainView: View {
             .background(Color(UIColor.systemBackground).opacity(0.95))
             .cornerRadius(12)
             .shadow(radius: 10)
-            .frame(width: 350, height: 120) // Tamanho padrão
+            .frame(width: 350, height: 120)
             .padding()
         }
     }
@@ -508,10 +514,9 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         let locationService = LocationService()
         locationService.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        
+
         let weatherService = WeatherService()
-        
-        // Use dados fictícios para a visualização
+
         return MainView()
             .environmentObject(locationService)
             .environmentObject(RunViewModel())

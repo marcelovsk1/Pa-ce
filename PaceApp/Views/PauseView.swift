@@ -97,10 +97,10 @@ struct PausedView: View {
                         // Custom page indicators
                         HStack {
                             Circle()
-                                .fill(selectedTab == 0 ? Color.green : Color.gray)
+                                .fill(selectedTab == 0 ? Color.purple : Color.gray)
                                 .frame(width: 10, height: 10)
                             Circle()
-                                .fill(selectedTab == 1 ? Color.green : Color.gray)
+                                .fill(selectedTab == 1 ? Color.purple : Color.gray)
                                 .frame(width: 10, height: 10)
                         }
                         .padding(.vertical, 10)
