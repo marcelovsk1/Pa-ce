@@ -62,9 +62,9 @@ struct RunningView: View {
                                         .foregroundColor(.black)
                                         .font(.custom("Avenir Next", size: 18))
                                     Image(systemName: "music.note")
-                                        .foregroundColor(.green)
-                                        .font(.custom("Avenir Next", size: 18))
-                                        
+                                        .foregroundColor(.purple)
+                                        .font(.custom("Avenir Next", size: 20))
+                                        .bold()
                                 }
                                 .padding()
                                 .background(Color.white.opacity(0.1))
@@ -74,18 +74,10 @@ struct RunningView: View {
                         .padding()
                         Spacer()
                         VStack(alignment: .trailing) {
-                            HStack {
-                                if heartRateAccessGranted {
-                                    if let heartRate = heartRate {
+                            if heartRateAccessGranted {
+                                if let heartRate = heartRate {
+                                    HStack {
                                         Text("\(heartRate)")
-                                            .font(.custom("Avenir Next", size: 20))
-                                            .bold()
-                                            .foregroundColor(.black)
-                                        Image(systemName: "heart.fill")
-                                            .foregroundColor(.red)
-                                            .font(.custom("Avenir Next", size: 20))
-                                    } else {
-                                        Text("--")
                                             .font(.custom("Avenir Next", size: 20))
                                             .bold()
                                             .foregroundColor(.black)
@@ -94,22 +86,33 @@ struct RunningView: View {
                                             .font(.custom("Avenir Next", size: 20))
                                     }
                                 } else {
-                                    Button(action: {
-                                        locationService.resetData()
-                                        resetRunData()
-                                    }) {
-                                        HStack {
-                                            Image(systemName: "arrow.counterclockwise")
-                                                .font(.subheadline)
-                                        }
-                                        .frame(minWidth: 0, maxWidth: .infinity)
-                                        .padding()
-                                        .foregroundColor(.white)
-                                        .frame(width: 35, height: 35)
-                                        .background(Color.red)
-                                        .clipShape(Circle())
-                                        .padding()
+                                    HStack {
+                                        Text("--")
+                                            .font(.custom("Avenir Next", size: 20))
+                                            .bold()
+                                            .foregroundColor(.black)
+                                        Image(systemName: "heart.fill")
+                                            .foregroundColor(.red)
+                                            .font(.custom("Avenir Next", size: 20))
                                     }
+                                    .offset(y: -10)
+                                }
+                            } else {
+                                Button(action: {
+                                    requestHeartRateAccess()
+                                }) {
+                                    HStack {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.black)
+                                            .font(.custom("Avenir Next", size: 18))
+                                        Image(systemName: "heart.fill")
+                                            .foregroundColor(.red)
+                                            .font(.custom("Avenir Next", size: 20))
+                                            .bold()
+                                    }
+                                    .padding()
+                                    .background(Color.white.opacity(0.1))
+                                    .clipShape(Circle())
                                 }
                             }
                         }
@@ -122,7 +125,7 @@ struct RunningView: View {
         .animation(.easeInOut, value: isPaused)
         .onAppear {
             if isRunning {
-                isPaused = false // Certifique-se de que isPaused é falso ao iniciar a corrida
+                isPaused = false // Ensure isPaused is false when starting the run
                 startRun()
             } else {
                 resetRunData()
@@ -140,13 +143,13 @@ struct RunningView: View {
     
     var runningView: some View {
         VStack {
-            Spacer().frame(height: 1) // Adicione um espaçamento superior aqui
+            Spacer().frame(height: 1) // Add a top spacing here
             
             HStack {
                 Spacer()
                 VStack {
                     HStack(alignment: .center) {
-                        Text("\(String(format:"%.2f", locationService.distance))") // Use a distância do LocationService
+                        Text("\(String(format:"%.2f", locationService.distance))") // Use the distance from LocationService
                             .font(.custom("Avenir Next", size: 54))
                             .bold()
                             .offset(x: 1)
@@ -251,6 +254,7 @@ struct RunningView: View {
             duration += 1.0
             updatePace()
         }
+        startHeartRateUpdates() // Adicione aqui para começar as atualizações da frequência cardíaca
     }
 
     func stopRun() {
@@ -297,14 +301,16 @@ struct RunningView: View {
     func startHeartRateUpdates() {
         guard heartRateAccessGranted else { return }
 
-        // Iniciar a simulação dos batimentos cardíacos
+        // Start heart rate updates simulation
         Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
-            self.heartRate = Int.random(in: 60...140)
+            DispatchQueue.main.async {
+                self.heartRate = Int.random(in: 60...140)
+            }
         }
     }
 
     func stopHeartRateUpdates() {
-        // Não precisa interromper nada aqui, já que estamos usando um Timer direto no startHeartRateUpdates
+        // No need to stop anything here as we are using a Timer directly in startHeartRateUpdates
     }
 
     func formattedTime(_ time: TimeInterval) -> String {

@@ -12,3 +12,26 @@
 //#Preview {
 //    ContentView()
 //}
+
+import SwiftUI
+
+struct ContentView: View {
+    @StateObject private var viewModel = YourServiceOrViewModel()
+
+    var body: some View {
+        VStack {
+            Button("Make Request") {
+                viewModel.performSearchRequest()
+            }
+        }
+        .onAppear {
+            viewModel.performSearchRequest()
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}

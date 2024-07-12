@@ -34,6 +34,8 @@
 		0BCA3F652C3F0D02009E30D0 /* RouteTrackingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F642C3F0D02009E30D0 /* RouteTrackingMapView.swift */; };
 		0BCA3F6B2C403042009E30D0 /* SeeMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F6A2C403042009E30D0 /* SeeMoreView.swift */; };
 		0BCA3F6D2C409353009E30D0 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F6C2C409352009E30D0 /* CountdownView.swift */; };
+		0BCA3F6F2C40F7DB009E30D0 /* ThrottleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F6E2C40F7DB009E30D0 /* ThrottleManager.swift */; };
+		0BCA3F712C40F842009E30D0 /* YourServiceOrViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3F702C40F842009E30D0 /* YourServiceOrViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		0BCA3F642C3F0D02009E30D0 /* RouteTrackingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTrackingMapView.swift; sourceTree = "<group>"; };
 		0BCA3F6A2C403042009E30D0 /* SeeMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreView.swift; sourceTree = "<group>"; };
 		0BCA3F6C2C409352009E30D0 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
+		0BCA3F6E2C40F7DB009E30D0 /* ThrottleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrottleManager.swift; sourceTree = "<group>"; };
+		0BCA3F702C40F842009E30D0 /* YourServiceOrViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourServiceOrViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,7 @@
 				0BCA3F472C3E3332009E30D0 /* Parks.swift */,
 				0BCA3F492C3E3343009E30D0 /* Marathon.swift */,
 				0BCA3F4B2C3E335A009E30D0 /* IdentifiablePark.swift */,
+				0BCA3F702C40F842009E30D0 /* YourServiceOrViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				0BCA3F562C3E39ED009E30D0 /* MotionService.swift */,
 				0BCA3F582C3E3A03009E30D0 /* SceneDelegate.swift */,
 				0BCA3F5A2C3E3A27009E30D0 /* WeatherService.swift */,
+				0BCA3F6E2C40F7DB009E30D0 /* ThrottleManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -252,6 +258,7 @@
 				0BCA3F3B2C3E328D009E30D0 /* PauseView.swift in Sources */,
 				0BCA3F282C3E315B009E30D0 /* ContentView.swift in Sources */,
 				0BCA3F432C3E32F2009E30D0 /* WorkoutCompletedView.swift in Sources */,
+				0BCA3F712C40F842009E30D0 /* YourServiceOrViewModel.swift in Sources */,
 				0BCA3F572C3E39ED009E30D0 /* MotionService.swift in Sources */,
 				0BCA3F3D2C3E32A0009E30D0 /* RunningView.swift in Sources */,
 				0BCA3F512C3E339F009E30D0 /* CoreMotion.swift in Sources */,
@@ -261,6 +268,7 @@
 				0BCA3F3F2C3E32BD009E30D0 /* ShoeRecommendationView.swift in Sources */,
 				0BCA3F592C3E3A03009E30D0 /* SceneDelegate.swift in Sources */,
 				0BCA3F262C3E315B009E30D0 /* PaceAppApp.swift in Sources */,
+				0BCA3F6F2C40F7DB009E30D0 /* ThrottleManager.swift in Sources */,
 				0BCA3F482C3E3332009E30D0 /* Parks.swift in Sources */,
 				0BCA3F602C3E3A6D009E30D0 /* Model.swift in Sources */,
 				0BCA3F652C3F0D02009E30D0 /* RouteTrackingMapView.swift in Sources */,

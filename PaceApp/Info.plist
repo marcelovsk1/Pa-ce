@@ -17,5 +17,9 @@
     <string>We need your location to provide weather information even in the background.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>We need your location to provide weather information even in the background.</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>We need access to your health data to track your workouts and monitor your heart rate.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>We need access to your health data to track your workouts.</string>
 </dict>
 </plist>
